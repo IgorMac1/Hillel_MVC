@@ -8,4 +8,6 @@ $router->add('admin/posts/{id:\d+}/edit',
         'action' => 'index',
         'method' => 'GET'
     ]
+
 );
+
