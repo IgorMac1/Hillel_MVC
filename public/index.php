@@ -1,6 +1,7 @@
 <?php
 require_once dirname(__DIR__) . '/Config/constants.php';
 require_once BASE_DIR . '/vendor/autoload.php';
+require_once BASE_DIR . '/Config/functions.php';
 
 $dotenv = \Dotenv\Dotenv::createUnsafeImmutable(BASE_DIR);
 $dotenv->load();
@@ -35,3 +36,4 @@ try {
 } catch (Exception $exception) {
     dd($exception->getMessage());
 }
+
