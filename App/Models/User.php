@@ -4,13 +4,16 @@ namespace App\Models;
 
 use Core\Model;
 
-class UserModel extends Model
+class User extends Model
 {
     public static string|null $tableName = 'users';
 
     public static array $fillable = [
-        'age',
-        'name'
+        'email',
+        'password',
+        'is_admin',
+        'name',
+        'surname'
     ];
 
 }
