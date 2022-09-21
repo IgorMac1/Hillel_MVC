@@ -54,6 +54,7 @@ trait Queryable
         return self::executeGetQuery(self::$query, static::$bindParams);
     }
 
+
     public static function findBy(string $column, $value)
     {
         self::$query = "SELECT * FROM " . static::$tableName . " WHERE {$column} = :{$column}";
@@ -74,6 +75,7 @@ trait Queryable
                 $insertPlaceholders[] = ':' . $key;
                 self::$bindParams[$key] = $field;
             }
+
         }
 
         self::$query = "INSERT INTO " . static::$tableName . " ( " . implode(',', $insertFields) . " ) VALUES ( " . implode(',', $insertPlaceholders) . ")";
