@@ -1,4 +1,5 @@
-<?php Core\View::render('layout/header', ['admin' => true]); ?>
-
 <?php
+Core\View::render('layout/header');
+
+
 Core\View::render('layout/footer');

@@ -4,7 +4,7 @@
             <div class="col-12 text-center text-uppercase">
                 <?php
                 if (!empty($categories)) {
-                    include_once VIEW_DIR . '/admin/categories/parts/categories_list.php';
+                    include_once VIEW_DIR . '/user/categories/parts/categories_list.php';
                 } else {
                     echo "<h3>There are no categories yet</h3>";
                 }

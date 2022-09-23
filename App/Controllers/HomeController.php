@@ -11,4 +11,6 @@ class HomeController extends Controller
     {
         View::render('home/index');
     }
+
+
 }
