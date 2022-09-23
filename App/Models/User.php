@@ -6,14 +6,12 @@ use Core\Model;
 
 class User extends Model
 {
-    public static string|null $tableName = 'users';
+    static public string|null $tableName = "users";
 
     public static array $fillable = [
+        'name',
+        'surname',
         'email',
         'password',
-        'is_admin',
-        'name',
-        'surname'
     ];
-
 }

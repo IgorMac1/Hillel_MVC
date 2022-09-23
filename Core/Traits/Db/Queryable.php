@@ -7,6 +7,8 @@ use PDO;
 
 trait Queryable
 {
+    protected array $commands = [];
+
     static public string|null $tableName = '';
 
     static protected string $query = '';
@@ -24,6 +26,7 @@ trait Queryable
 
     public static function select()
     {
+
         static::$query = "SELECT * FROM " . static::$tableName . " WHERE 1=1";
         return new static();
     }
@@ -46,10 +49,12 @@ trait Queryable
 
     public static function find(int $id)
     {
+
         self::$query = "SELECT * FROM " . static::$tableName . " WHERE id = :id";
         static::$bindParams = [
             'id' => $id
         ];
+
 
         return self::executeGetQuery(self::$query, static::$bindParams);
     }
@@ -75,7 +80,6 @@ trait Queryable
                 $insertPlaceholders[] = ':' . $key;
                 self::$bindParams[$key] = $field;
             }
-
         }
 
         self::$query = "INSERT INTO " . static::$tableName . " ( " . implode(',', $insertFields) . " ) VALUES ( " . implode(',', $insertPlaceholders) . ")";
@@ -116,6 +120,15 @@ trait Queryable
         return true;
     }
 
+    public function destroy()
+    {
+        if (!isset($this->id)) {
+            return $this;
+        }
+
+        return static::delete($this->id);
+    }
+
     private static function executeGetQuery(string $query, array $bindParams, $getSingleObject = true)
     {
         try {
@@ -140,6 +153,7 @@ trait Queryable
 
             return Db::connect()->lastInsertId();
         } catch (\Exception $exception) {
+            dd($exception->getMessage());
             return null;
         }
     }
@@ -149,4 +163,14 @@ trait Queryable
         return Db::connect()->prepare($query);
     }
 
+    private static function buildPlaceholders(array $data): string
+    {
+        $ps = [];
+
+        foreach ($data as $key => $value) {
+            $ps[] = " {$key}=:{$key}";
+        }
+
+        return implode(', ', $ps);
+    }
 }

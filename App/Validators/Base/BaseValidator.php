@@ -8,7 +8,6 @@ class BaseValidator
 
     public function validate(array $fields): bool
     {
-
         foreach ($fields as $key => $field) {
 
             if (!empty($this->rules[$key]) && preg_match($this->rules[$key], $field)) {

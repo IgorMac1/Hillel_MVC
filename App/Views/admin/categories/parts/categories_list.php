@@ -11,8 +11,7 @@
     <?php foreach ($categories as $category): ?>
         <tr>
             <th scope="row"><?= $category->id ?></th>
-            <td><img src="<?= IMG_URL . $category->image ?>" width="100" alt=""></td>
-            <td><?= $category->name ?></td>
+            <td><?= $category->title ?></td>
             <td>
                 <a href="<?= url("admin/categories/{$category->id}/edit") ?>" class="btn btn-info">Edit</a>
                 <form action="<?= url("admin/categories/{$category->id}/destroy") ?>" method="post">

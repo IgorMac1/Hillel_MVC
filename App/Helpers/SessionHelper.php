@@ -1,6 +1,6 @@
 <?php
-namespace App\Helpers;
 
+namespace App\Helpers;
 class SessionHelper
 {
     public static function authCheck(): bool
@@ -15,10 +15,24 @@ class SessionHelper
 
     public static function setUserData($id, ...$args)
     {
+        $addParams = [];
+        foreach ($args as $arg) {
+            $addParams = array_merge($addParams, $arg);
+        }
         $_SESSION['user_data'] = array_merge(
             ['id' => $id],
-            $args
+            $addParams
         );
+    }
+
+    public static function isAdmin(): bool
+    {
+        return $_SESSION['user_data']['is_admin'] ?? false;
+    }
+
+    public static function getUser(): ?array
+    {
+        return $_SESSION['user_data'] ?? null;
     }
 
     public static function destroy()

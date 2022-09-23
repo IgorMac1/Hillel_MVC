@@ -3,10 +3,11 @@
         <div class="row">
             <div class="col-12 text-center text-uppercase">
                 <?php
-                if (!empty($categories)) {
-                    include_once VIEW_DIR . '/admin/categories/parts/categories_list.php';
+
+                if (!empty($posts)) {
+                    include_once VIEW_DIR . '/admin/posts/parts/products_list.php';
                 } else {
-                    echo "<h3>There are no categories yet</h3>";
+                    echo "<h3>There are no posts yet</h3>";
                 }
                 ?>
             </div>
